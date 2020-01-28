@@ -64,6 +64,9 @@ class Student(UserReprMixin, models.Model):
         verbose_name_plural = _('Students')
 
     def enroll_in_a_course(self, course):
+        """
+        Записаться на курс
+        """
         self.courses.add(course)
 
 
@@ -71,9 +74,12 @@ class Lesson(models.Model):
     """
     Занятие на курсе
     """
-    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='lessons')
     start_time = models.DateTimeField(_('Lesson start time'))
 
     class Meta:
         verbose_name = _('Lesson')
         verbose_name_plural = _('Lessons')
+
+    def __str__(self):
+        return f'{self.course} {self.start_time}'

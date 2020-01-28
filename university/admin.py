@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from university.models import Course, Teacher, Student
+from university.models import Course, Teacher, Student, Lesson
 
 
 class StudentInlineAdmin(admin.TabularInline):
@@ -26,3 +26,8 @@ class TeacherAdmin(admin.ModelAdmin):
 @admin.register(Student)
 class StudentAdmin(admin.ModelAdmin):
     filter_horizontal = ('courses',)
+
+
+@admin.register(Lesson)
+class LessonAdmin(admin.ModelAdmin):
+    pass
