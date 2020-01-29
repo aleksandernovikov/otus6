@@ -26,7 +26,7 @@ class Course(models.Model):
         return self.title
 
     def students_list(self):
-        return self.student_set.all()
+        return self.students.all()
 
 
 class Teacher(UserReprMixin, models.Model):
@@ -55,6 +55,7 @@ class Student(UserReprMixin, models.Model):
 
     courses = models.ManyToManyField(
         Course,
+        related_name='students',
         verbose_name=_('Courses'),
         blank=True
     )
