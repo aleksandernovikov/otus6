@@ -7,7 +7,7 @@
 
 #### Для запуска проекта нужно клонировать репозиторий
 #### выполнить миграции используя manage.py  migrate
-#### загрузить fixture коммандой manage.py loaddata data.json
+#### загрузить fixture коммандой manage.py loaddata auth university
 #### админка доступна по адресу /admin пользователь user, пароль 123
 ---
 #### студент может записаться на курс используя метод enroll_in_a_course() модели Student
