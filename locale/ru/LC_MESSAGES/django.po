@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-29 08:56+0300\n"
+"POT-Creation-Date: 2020-01-31 12:02+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,10 +25,11 @@ msgid "University"
 msgstr "Университет"
 
 #: university/models.py:12
-msgid "Course name"
-msgstr ""
+msgid "Course title"
+msgstr "Название курса"
 
 #: university/models.py:17 university/models.py:43
+#: university/templates/university/course/course_detail.html:6
 msgid "Teacher"
 msgstr "Преподаватель"
 
@@ -36,7 +37,7 @@ msgstr "Преподаватель"
 msgid "Course"
 msgstr "Курс"
 
-#: university/models.py:23 university/models.py:58
+#: university/models.py:23 university/models.py:59
 msgid "Courses"
 msgstr "Курсы"
 
@@ -48,29 +49,88 @@ msgstr "Пользователь"
 msgid "Teachers"
 msgstr "Преподаватели"
 
-#: university/models.py:63
+#: university/models.py:64
 msgid "Student"
 msgstr "Студент"
 
-#: university/models.py:64
+#: university/models.py:65
 msgid "Students"
 msgstr "Студенты"
 
-#: university/models.py:78
+#: university/models.py:79
 msgid "Lesson start time"
 msgstr "Время начала занятия"
 
-#: university/models.py:81
+#: university/models.py:82
 msgid "Lesson"
 msgstr "Занятие"
 
-#: university/models.py:82
+#: university/models.py:83
 msgid "Lessons"
 msgstr "Занятия"
 
+#: university/templates/university/course/course_confirm_delete.html:4
+#: university/views.py:28
+msgid "Course deletion"
+msgstr "Удаление курса"
+
+#: university/templates/university/course/course_confirm_delete.html:9
+msgid "Are you sure you want to delete"
+msgstr "Вы уверены что хотите удалить"
+
+#: university/templates/university/course/course_confirm_delete.html:10
+#: university/templates/university/course/course_list.html:10
+#: venv/lib/python3.8/site-packages/django/forms/formsets.py:391
+msgid "Delete"
+msgstr "Удалить"
+
+#: university/templates/university/course/course_confirm_delete.html:11
+msgid "Cancel"
+msgstr "Отмена"
+
+#: university/templates/university/course/course_detail.html:5
+msgid "Title"
+msgstr "Название"
+
+#: university/templates/university/course/course_detail.html:8
+msgid "Students:"
+msgstr "Студенты"
+
+#: university/templates/university/course/course_detail.html:15
+msgid "There are no students in this course."
+msgstr "На этом курсе нет студентов."
+
+#: university/templates/university/course/course_form.html:8
+msgid "Save"
+msgstr "Сохранить"
+
+#: university/templates/university/course/course_list.html:9
+msgid "Edit"
+msgstr "Редактировать"
+
+#: university/templates/university/course/course_list.html:14
+msgid "Create a new course"
+msgstr "Создать новый курс"
+
+#: university/views.py:13
+msgid "Course list"
+msgstr "Список курсов"
+
+#: university/views.py:21
+msgid "Course creation"
+msgstr "Создание курса"
+
+#: university/views.py:36
+msgid "Course update"
+msgstr "Изменение курса"
+
+#: university/views.py:42
+msgid "Course details"
+msgstr "Детали курса"
+
 #: venv/lib/python3.8/site-packages/django/contrib/messages/apps.py:7
 msgid "Messages"
-msgstr ""
+msgstr "Сообщения"
 
 #: venv/lib/python3.8/site-packages/django/contrib/sitemaps/apps.py:7
 msgid "Site Maps"
@@ -600,10 +660,6 @@ msgstr[1] ""
 #: venv/lib/python3.8/site-packages/django/forms/formsets.py:379
 #: venv/lib/python3.8/site-packages/django/forms/formsets.py:386
 msgid "Order"
-msgstr ""
-
-#: venv/lib/python3.8/site-packages/django/forms/formsets.py:391
-msgid "Delete"
 msgstr ""
 
 #: venv/lib/python3.8/site-packages/django/forms/models.py:754

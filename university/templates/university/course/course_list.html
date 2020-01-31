@@ -1,0 +1,15 @@
+{% extends 'university/course/course_base.html' %}
+{% load i18n %}
+
+{% block content %}
+    <ul>
+        {% for course in object_list %}
+            <li>
+                <a href="{% url 'course-detail' course.id %}">{{ course.title }}</a>
+                <a href="{% url 'course-update' course.id %}">{% trans 'Edit' %}</a> |
+                <a href="{% url 'course-delete' course.id %}">{% trans 'Delete' %}</a>
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'course-create' %}">{% trans 'Create a new course' %}</a>
+{% endblock %}

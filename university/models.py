@@ -2,14 +2,14 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.utils.translation import gettext as _
 
-from university.mixins import UserReprMixin
+from university.mixins import UserRepresentationModelMixin
 
 
 class Course(models.Model):
     """
     Учебный курс
     """
-    title = models.CharField(_('Course name'), max_length=128)
+    title = models.CharField(_('Course title'), max_length=128)
 
     teacher = models.ForeignKey(
         'Teacher',
@@ -29,7 +29,7 @@ class Course(models.Model):
         return self.students.all()
 
 
-class Teacher(UserReprMixin, models.Model):
+class Teacher(UserRepresentationModelMixin, models.Model):
     """
     Преподаватель
     """
@@ -47,7 +47,7 @@ class Teacher(UserReprMixin, models.Model):
         return self.courses.all()
 
 
-class Student(UserReprMixin, models.Model):
+class Student(UserRepresentationModelMixin, models.Model):
     """
     Студент
     """

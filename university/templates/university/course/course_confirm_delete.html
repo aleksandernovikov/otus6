@@ -1,0 +1,13 @@
+{% extends 'university/course/course_base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans 'Course deletion' %} {{ course.title }}{% endblock %}
+
+{% block content %}
+    <form method="post">
+        {% csrf_token %}
+        <p>{% trans 'Are you sure you want to delete' %} "{{ course.title }}"?</p>
+        <input type="submit" value="{% trans 'Delete' %}">
+        <a href="{% url 'course-list' %}">{% trans 'Cancel' %}</a>
+    </form>
+{% endblock %}

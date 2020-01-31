@@ -1,0 +1,18 @@
+{% extends 'university/course/course_base.html' %}
+{% load i18n %}
+
+{% block content %}
+    <h1>{% trans 'Title' %}: {{ course.title }}</h1>
+    <h3>{% trans 'Teacher' %}: {{ course.teacher }}</h3>
+
+    <h4>{% trans 'Students:' %}</h4>
+    <ul>
+        {% for student in course.students_list %}
+            <li>
+                {{ student }}
+            </li>
+            {% empty %}
+            <p>{% trans  'There are no students in this course.'%}</p>
+        {% endfor %}
+    </ul>
+{% endblock %}
