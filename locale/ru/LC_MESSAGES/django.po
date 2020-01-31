@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-31 12:02+0300\n"
+"POT-Creation-Date: 2020-01-31 13:01+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,52 +20,60 @@ msgstr ""
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
 "%100>=11 && n%100<=14)? 2 : 3);\n"
 
+#: custom_user/apps.py:7
+msgid "Custom User"
+msgstr "Пользователь университета"
+
+#: custom_user/models.py:7
+msgid "Middle Name"
+msgstr "Отчество"
+
 #: university/apps.py:7
 msgid "University"
 msgstr "Университет"
 
-#: university/models.py:12
+#: university/models.py:14
 msgid "Course title"
 msgstr "Название курса"
 
-#: university/models.py:17 university/models.py:43
+#: university/models.py:19 university/models.py:45
 #: university/templates/university/course/course_detail.html:6
 msgid "Teacher"
 msgstr "Преподаватель"
 
-#: university/models.py:22
+#: university/models.py:24
 msgid "Course"
 msgstr "Курс"
 
-#: university/models.py:23 university/models.py:59
+#: university/models.py:25 university/models.py:61
 msgid "Courses"
 msgstr "Курсы"
 
-#: university/models.py:39 university/models.py:54
+#: university/models.py:41 university/models.py:56
 msgid "User"
 msgstr "Пользователь"
 
-#: university/models.py:44
+#: university/models.py:46
 msgid "Teachers"
 msgstr "Преподаватели"
 
-#: university/models.py:64
+#: university/models.py:66
 msgid "Student"
 msgstr "Студент"
 
-#: university/models.py:65
+#: university/models.py:67
 msgid "Students"
 msgstr "Студенты"
 
-#: university/models.py:79
+#: university/models.py:81
 msgid "Lesson start time"
 msgstr "Время начала занятия"
 
-#: university/models.py:82
+#: university/models.py:84
 msgid "Lesson"
 msgstr "Занятие"
 
-#: university/models.py:83
+#: university/models.py:85
 msgid "Lessons"
 msgstr "Занятия"
 

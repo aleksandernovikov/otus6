@@ -7,12 +7,10 @@ from .factories import ru_faker, TeacherFactory, CourseFactory, StudentFactory
 class TestCourse(TestCase):
 
     def test_create(self):
-        teacher = TeacherFactory()
         title = ru_faker('word').generate()
-        course = Course.objects.create(title=title, teacher=teacher)
+        course = Course.objects.create(title=title)
 
         self.assertIsInstance(course, Course)
-        self.assertEqual(course.teacher, teacher)
         self.assertEqual(course.title, title)
 
     def test_delete(self):
@@ -33,13 +31,25 @@ class TestCourse(TestCase):
         course.refresh_from_db()
         self.assertEqual(new_title, course.title)
 
-    def test_update_course_teacher(self):
+    def test_add_course_teacher(self):
         course = CourseFactory()
         new_teacher = TeacherFactory()
-        course.teacher = new_teacher
-        course.save(update_fields=('teacher',))
+
+        course.teachers.add(new_teacher)
         course.refresh_from_db()
-        self.assertEqual(new_teacher, course.teacher)
+        self.assertIn(new_teacher, course.teachers.all())
+
+    def test_remove_teacher_from_course_(self):
+        course = CourseFactory()
+        new_teacher = TeacherFactory()
+
+        course.teachers.add(new_teacher)
+        course.refresh_from_db()
+        self.assertIn(new_teacher, course.teachers.all())
+
+        course.teachers.remove(new_teacher)
+        course.refresh_from_db()
+        self.assertNotIn(new_teacher, course.teachers.all())
 
     def test_students_list(self):
         course = CourseFactory()

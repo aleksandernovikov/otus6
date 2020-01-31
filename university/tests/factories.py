@@ -1,11 +1,14 @@
 import factory
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 
 from ..models import Student, Teacher, Course, Lesson
 
 
 def ru_faker(*args, **kwargs):
     return factory.Faker(*args, **kwargs, locale='ru_RU')
+
+
+User = get_user_model()
 
 
 class UserFactory(factory.DjangoModelFactory):
@@ -44,7 +47,15 @@ class CourseFactory(factory.DjangoModelFactory):
         model = Course
 
     title = ru_faker('text')
-    teacher = factory.SubFactory(TeacherFactory)
+
+    @factory.post_generation
+    def teachers(self, create, teachers, *args, **kwargs):
+        if create:
+            if not teachers:
+                teachers_count = kwargs.get('teachers_count', 1)
+                teachers = [TeacherFactory() for i in range(teachers_count)]
+            for teacher in teachers:
+                self.teachers.add(teacher)
 
 
 class LessonFactory(factory.DjangoModelFactory):

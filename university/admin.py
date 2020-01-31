@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from university.models import Course, Teacher, Student, Lesson
+from .models import Course, Teacher, Student, Lesson
 
 
 class StudentInlineAdmin(admin.TabularInline):
@@ -9,13 +9,14 @@ class StudentInlineAdmin(admin.TabularInline):
 
 
 class TeacherCoursesInlineAdmin(admin.TabularInline):
-    model = Course
+    model = Course.teachers.through
     extra = 1
 
 
 @admin.register(Course)
 class CourseAdmin(admin.ModelAdmin):
     inlines = (StudentInlineAdmin,)
+    filter_horizontal = ('teachers',)
 
 
 @admin.register(Teacher)
@@ -30,4 +31,13 @@ class StudentAdmin(admin.ModelAdmin):
 
 @admin.register(Lesson)
 class LessonAdmin(admin.ModelAdmin):
-    pass
+    fields = (
+        'course',
+        'start_time',
+        'end_time',
+        'current_teacher'
+    )
+    readonly_fields = ('end_time',)
+
+    # def get_end_time(self, obj):
+    #     return obj.end_time
