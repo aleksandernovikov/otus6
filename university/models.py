@@ -55,10 +55,6 @@ class Teacher(UserRepresentationModelMixin, models.Model):
     def teaches_courses(self):
         return self.courses.all()
 
-    @classmethod
-    def _courses_list(cls):
-        pass
-
 
 class Student(UserRepresentationModelMixin, models.Model):
     """

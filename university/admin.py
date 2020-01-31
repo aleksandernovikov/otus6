@@ -16,12 +16,31 @@ class TeacherCoursesInlineAdmin(admin.TabularInline):
 @admin.register(Course)
 class CourseAdmin(admin.ModelAdmin):
     inlines = (StudentInlineAdmin,)
-    filter_horizontal = ('teachers',)
+    autocomplete_fields = ('teachers',)
 
 
 @admin.register(Teacher)
 class TeacherAdmin(admin.ModelAdmin):
     inlines = (TeacherCoursesInlineAdmin,)
+    # https://docs.djangoproject.com/en/3.0/ref/contrib/admin/#django.contrib.admin.ModelAdmin.search_fields
+    search_fields = (
+        'user__username',
+        'user__first_name',
+        'user__middle_name',
+        'user__last_name'
+    )
+
+    # ordering = ('id',)
+
+    def get_search_results(self, request, queryset, search_term):
+        queryset, use_distinct = super().get_search_results(request, queryset, search_term)
+        try:
+            search_term_as_int = int(search_term)
+        except ValueError:
+            pass
+        else:
+            queryset |= self.model.objects.filter(age=search_term_as_int)
+        return queryset, use_distinct
 
 
 @admin.register(Student)
@@ -38,6 +57,3 @@ class LessonAdmin(admin.ModelAdmin):
         'current_teacher'
     )
     readonly_fields = ('end_time',)
-
-    # def get_end_time(self, obj):
-    #     return obj.end_time
