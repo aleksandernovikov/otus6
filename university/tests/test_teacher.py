@@ -26,10 +26,3 @@ class TestTeacher(TestCase):
         teacher.save(update_fields=('user',))
         teacher.refresh_from_db()
         self.assertEqual(new_user, teacher.user)
-
-    def test_teaches_courses(self):
-        teacher = TeacherFactory()
-        new_course = CourseFactory()
-        self.assertNotIn(new_course, teacher.teaches_courses())
-        teacher.courses.add(new_course)
-        self.assertIn(new_course, teacher.teaches_courses())

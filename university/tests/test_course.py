@@ -50,10 +50,3 @@ class TestCourse(TestCase):
         course.teachers.remove(new_teacher)
         course.refresh_from_db()
         self.assertNotIn(new_teacher, course.teachers.all())
-
-    def test_students_list(self):
-        course = CourseFactory()
-        student = StudentFactory()
-        self.assertNotIn(student, course.students_list())
-        course.students.add(student)
-        self.assertIn(student, course.students_list())
