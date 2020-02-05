@@ -1,7 +1,6 @@
 class UserRepresentationModelMixin:
     def __str__(self):
-        full_name = self.user.get_full_name()
-        return full_name if full_name else self.user.username
+        return self.user.display_name if self.user.display_name else self.user.username
 
 
 class TitleViewMixin:

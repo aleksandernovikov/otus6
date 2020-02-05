@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-31 13:01+0300\n"
+"POT-Creation-Date: 2020-02-05 10:25+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -28,52 +28,75 @@ msgstr "Пользователь университета"
 msgid "Middle Name"
 msgstr "Отчество"
 
+#: custom_user/models.py:8
+msgid "Display name"
+msgstr "Отображаемое имя"
+
 #: university/apps.py:7
 msgid "University"
 msgstr "Университет"
 
-#: university/models.py:14
+#: university/models.py:19
 msgid "Course title"
 msgstr "Название курса"
 
-#: university/models.py:19 university/models.py:45
+#: university/models.py:23 university/models.py:50
+msgid "Teachers"
+msgstr "Преподаватели"
+
+#: university/models.py:27
+#| msgid "Course update"
+msgid "Сourse start date"
+msgstr "Дата начала курса"
+
+#: university/models.py:28
+#| msgid "Course update"
+msgid "Course end date"
+msgstr "Дата окончания курса"
+
+#: university/models.py:31
+msgid "Course"
+msgstr "Курс"
+
+#: university/models.py:32 university/models.py:62
+msgid "Courses"
+msgstr "Курсы"
+
+#: university/models.py:45 university/models.py:57
+msgid "User"
+msgstr "Пользователь"
+
+#: university/models.py:49
 #: university/templates/university/course/course_detail.html:6
 msgid "Teacher"
 msgstr "Преподаватель"
 
-#: university/models.py:24
-msgid "Course"
-msgstr "Курс"
-
-#: university/models.py:25 university/models.py:61
-msgid "Courses"
-msgstr "Курсы"
-
-#: university/models.py:41 university/models.py:56
-msgid "User"
-msgstr "Пользователь"
-
-#: university/models.py:46
-msgid "Teachers"
-msgstr "Преподаватели"
-
-#: university/models.py:66
+#: university/models.py:67
 msgid "Student"
 msgstr "Студент"
 
-#: university/models.py:67
+#: university/models.py:68
 msgid "Students"
 msgstr "Студенты"
 
-#: university/models.py:81
+#: university/models.py:82
 msgid "Lesson start time"
 msgstr "Время начала занятия"
 
-#: university/models.py:84
+#: university/models.py:83
+#| msgid "Lesson start time"
+msgid "Lesson end time"
+msgstr "Время окончания занятия"
+
+#: university/models.py:88
+msgid "Current teacher"
+msgstr "Текущий преподаватель"
+
+#: university/models.py:94
 msgid "Lesson"
 msgstr "Занятие"
 
-#: university/models.py:85
+#: university/models.py:95
 msgid "Lessons"
 msgstr "Занятия"
 

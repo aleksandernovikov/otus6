@@ -5,9 +5,7 @@ from django.db import models
 
 class UniversityUser(AbstractUser):
     middle_name = models.CharField(_('Middle Name'), max_length=100)
+    display_name = models.CharField(_('Display name'), max_length=150, blank=True, null=True)
 
-    def get_full_name(self):
-        """
-        Полное ФИО
-        """
-        return f'{self.first_name} {self.middle_name} {self.last_name}'.strip()
+    def __str__(self):
+        return self.display_name if self.display_name else self.username

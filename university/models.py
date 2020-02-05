@@ -34,9 +34,6 @@ class Course(models.Model):
     def __str__(self):
         return self.title
 
-    def students_list(self):
-        return self.students.all()
-
 
 class Teacher(UserRepresentationModelMixin, models.Model):
     """
@@ -51,9 +48,6 @@ class Teacher(UserRepresentationModelMixin, models.Model):
     class Meta:
         verbose_name = _('Teacher')
         verbose_name_plural = _('Teachers')
-
-    def teaches_courses(self):
-        return self.courses.all()
 
 
 class Student(UserRepresentationModelMixin, models.Model):
@@ -86,6 +80,7 @@ class Lesson(models.Model):
     """
     course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='lessons')
     start_time = models.DateTimeField(_('Lesson start time'))
+    end_time = models.DateTimeField(_('Lesson end time'), blank=True)
 
     current_teacher = models.ForeignKey(
         Teacher,
@@ -100,13 +95,5 @@ class Lesson(models.Model):
         verbose_name_plural = _('Lessons')
 
     def __str__(self):
-        return f'{self.course} {self.start_time}'
-
-    @property
-    def end_time(self):
-        """
-        Время окончания урока - добавим 45 к времени начала урока, нет смысла засорять БД
-        """
-        timezone = pytz.timezone(settings.TIME_ZONE)
-        end_time = self.start_time + timedelta(minutes=45)
-        return end_time.astimezone(timezone)
+        format = "%d.%m.%y %H:%M"
+        return f'{self.course} {self.start_time.strftime(format)} - {self.end_time.strftime(format)}'

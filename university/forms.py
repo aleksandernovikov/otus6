@@ -6,7 +6,12 @@ from university.models import Course, Lesson
 class CourseForm(forms.ModelForm):
     class Meta:
         model = Course
-        fields = '__all__'
+        fields = (
+            'title',
+            'teachers',
+            'start_date',
+            'end_date'
+        )
 
 
 class LessonForm(forms.ModelForm):
