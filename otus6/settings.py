@@ -25,7 +25,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'custom_user',
-    'university'
+    'university',
+    'contacts',
 ]
 
 MIDDLEWARE = [
@@ -110,3 +111,18 @@ LOCALE_PATHS = (
 STATIC_URL = '/static/'
 
 AUTH_USER_MODEL = 'custom_user.UniversityUser'
+
+# https://docs.djangoproject.com/en/3.0/ref/settings/#admins
+# for mail_admins()
+ADMINS = [('Super Admin', 'admin@university.dev')]
+
+# https://docs.djangoproject.com/en/3.0/topics/email/#console-backend
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# https://docs.djangoproject.com/en/3.0/topics/email/#file-backend
+# EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+# EMAIL_FILE_PATH = '/tmp/app-messages' # change this to a proper location
+
+REDIS_HOST = 'localhost'
+REDIS_PORT = '6379'
+BROKER_URL = 'redis://' + REDIS_HOST + ':' + REDIS_PORT + '/0'
