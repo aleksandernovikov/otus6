@@ -8,7 +8,6 @@ from otus6.celery import app
 @app.task
 def send_email_task(name, email, message):
     subject = f'Hello, {name}'
-    message = message
 
     try:
         # https://docs.djangoproject.com/en/3.0/ref/settings/#admins

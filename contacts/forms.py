@@ -1,6 +1,7 @@
 from django import forms
 from .tasks import send_email_task
 
+
 class ContactForm(forms.Form):
     name = forms.CharField()
     email = forms.EmailField()

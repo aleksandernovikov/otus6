@@ -5,7 +5,19 @@
 
 {% block content %}
     <form method="post">{% csrf_token %}
-        {{ form.as_p }}
+        {% for non_field_error in form.non_field_errors %}
+            <p class="help is-danger">{{ non_field_error }}</p>
+        {% endfor %}
+
+        {% for field in form %}
+            <div class="field">
+                <label for="{{ field.id_for_label }}" class="label">{{ field.html_name }}</label>
+                {{ field }}
+                {% for error in field.errors %}
+                    <p class="help is-danger">{{ error }}</p>
+                {% endfor %}
+            </div>
+        {% endfor %}
         <input type="submit" value="{% trans 'Send message' %}">
     </form>
 {% endblock %}
