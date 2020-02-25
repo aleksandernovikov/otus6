@@ -19,16 +19,6 @@ class TestUser(APITestCase):
     def setUp(self) -> None:
         self.user = UserFactory()
 
-    # @classmethod
-    # def setUpClass(cls):
-    #     super().setUpClass()
-    #     print('setUpClass')
-    #
-    # @classmethod
-    # def setUpTestData(cls):
-    #     super().setUpTestData()
-    #     print('setUpTestData')
-
     def test_list_request_factory(self):
         request_factory = APIRequestFactory()
         request = request_factory.get('/api/v1/user/')

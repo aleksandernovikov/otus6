@@ -47,7 +47,7 @@ class CourseFactory(factory.DjangoModelFactory):
     class Meta:
         model = Course
 
-    title = ru_faker('text')
+    title = ru_faker('word')
 
     @factory.post_generation
     def teachers(self, create, teachers, *args, **kwargs):

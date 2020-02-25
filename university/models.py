@@ -1,4 +1,4 @@
-from datetime import datetime
+import datetime
 
 from django.contrib.auth import get_user_model
 from django.db import models
@@ -19,9 +19,10 @@ class Course(models.Model):
         'Teacher',
         verbose_name=_('Teachers'),
         related_name='courses',
+        blank=True,
     )
 
-    start_date = models.DateField(_('Сourse start date'), default=datetime.now, blank=True, null=True)
+    start_date = models.DateField(_('Сourse start date'), default=datetime.date.today, blank=True, null=True)
     end_date = models.DateField(_('Course end date'), blank=True, null=True)
 
     class Meta:
