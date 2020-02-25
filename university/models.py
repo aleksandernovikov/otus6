@@ -1,10 +1,7 @@
-from datetime import timedelta, datetime
+from datetime import datetime
 
-from django.utils.timezone import pytz
-from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.db import models
-from django.utils.timezone import make_aware, now
 from django.utils.translation import gettext as _
 
 from university.mixins import UserRepresentationModelMixin

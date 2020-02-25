@@ -6,5 +6,6 @@ urlpatterns = [
     path('', RedirectView.as_view(url=reverse_lazy('course-list')), name='index'),
     path('admin/', admin.site.urls),
     path('university/', include('university.urls')),
-    path('contacts/', include('contacts.urls'))
+    path('contacts/', include('contacts.urls')),
+    path('api/v1/', include('api.urls'))
 ]
