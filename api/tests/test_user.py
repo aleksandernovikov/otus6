@@ -19,9 +19,13 @@ class TestUser(APITestCase):
     def setUp(self) -> None:
         self.user = UserFactory()
 
+    @classmethod
+    def setUpTestData(cls):
+        cls.base_url = '/api/v1/user/'
+
     def test_list_request_factory(self):
         request_factory = APIRequestFactory()
-        request = request_factory.get('/api/v1/user/')
+        request = request_factory.get(self.base_url)
         user_view = UserViewSet.as_view({'get': 'list'})
         response = user_view(request)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
@@ -30,7 +34,7 @@ class TestUser(APITestCase):
         u = UserFactory.build()
         request_factory = APIRequestFactory()
         request = request_factory.post(
-            '/api/v1/user/',
+            self.base_url,
             {
                 'username': u.username,
                 'first_name': u.first_name,
@@ -44,7 +48,7 @@ class TestUser(APITestCase):
 
     def test_retrieve_request_factory(self):
         request_factory = APIRequestFactory()
-        request = request_factory.get(f'/api/v1/user/{self.user.pk}/')
+        request = request_factory.get(f'{self.base_url}{self.user.pk}/')
         user_view = UserViewSet.as_view({'get': 'retrieve'})
         response = user_view(request, pk=self.user.pk)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
@@ -53,7 +57,7 @@ class TestUser(APITestCase):
         request_factory = APIRequestFactory()
         new_first_name = ru_faker('first_name').generate()
         request = request_factory.patch(
-            f'/api/v1/user/{self.user.pk}/',
+            f'{self.base_url}{self.user.pk}/',
             {
                 'first_name': new_first_name
             })
@@ -63,7 +67,7 @@ class TestUser(APITestCase):
 
     def test_delete_request_factory(self):
         request_factory = APIRequestFactory()
-        request = request_factory.delete(f'/api/v1/user/{self.user.pk}/')
+        request = request_factory.delete(f'{self.base_url}{self.user.pk}/')
         user_view = UserViewSet.as_view({'delete': 'destroy'})
         response = user_view(request, pk=self.user.pk)
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)

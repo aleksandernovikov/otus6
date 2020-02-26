@@ -1,7 +1,7 @@
 import datetime
 
 from django.contrib.auth import get_user_model
-from django.db import models
+from django.db import models, transaction
 from django.utils.translation import gettext as _
 
 from university.mixins import UserRepresentationModelMixin
@@ -25,12 +25,24 @@ class Course(models.Model):
     start_date = models.DateField(_('Сourse start date'), default=datetime.date.today, blank=True, null=True)
     end_date = models.DateField(_('Course end date'), blank=True, null=True)
 
+    finished = models.BooleanField(default=False)
+
     class Meta:
         verbose_name = _('Course')
         verbose_name_plural = _('Courses')
 
     def __str__(self):
         return self.title
+
+    def complete(self):
+        with transaction.atomic():
+            self.students.set([])
+            self.save()
+            transaction.on_commit(self.mark_as_finished)
+
+    def mark_as_finished(self):
+        self.finished = True
+        self.save()
 
 
 class Teacher(UserRepresentationModelMixin, models.Model):

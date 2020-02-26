@@ -5,14 +5,16 @@ from university.tests.factories import UserFactory, TeacherFactory
 
 
 class TestTeacher(APITestCase):
-    def setUp(self) -> None:
-        self.teacher = TeacherFactory()
-        self.user = UserFactory()
+    @classmethod
+    def setUpClass(cls):
+        cls.base_url = '/api/v1/teacher/'
+        cls.teacher = TeacherFactory()
+        cls.user = UserFactory()
 
     @classmethod
-    def setUpTestData(cls):
-        super().setUpTestData()
-        cls.base_url = '/api/v1/teacher/'
+    def tearDownClass(cls):
+        cls.teacher.delete()
+        cls.user.delete()
 
     def test_list_teacher(self):
         response = self.client.get(self.base_url)
