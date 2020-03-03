@@ -1,7 +1,7 @@
 from django.test import TestCase
 
 from ..models import Course
-from .factories import ru_faker, TeacherFactory, CourseFactory, StudentFactory
+from .factories import ru_faker, TeacherFactory, CourseFactory
 
 
 class TestCourse(TestCase):
