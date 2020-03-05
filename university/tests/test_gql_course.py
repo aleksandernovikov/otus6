@@ -13,6 +13,9 @@ class TestCourseGQL(GraphQLTestCase):
         self.course = CourseFactory()
 
     def test_query_all_courses(self) -> None:
+        """
+        Тест получения всех курсов
+        """
         response = self.query(
             '''
             {
@@ -26,6 +29,9 @@ class TestCourseGQL(GraphQLTestCase):
         self.assertResponseNoErrors(response)
 
     def test_retrieve_one_course(self) -> None:
+        """
+        Тест получения одного курса
+        """
         response = self.query(
             '''
             query ($id: Int) {

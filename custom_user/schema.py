@@ -1,4 +1,7 @@
+from typing import List, Optional, Union
+
 import graphene
+from django.db.models import QuerySet
 from graphene_django import DjangoObjectType
 
 from .models import UniversityUser
@@ -10,6 +13,9 @@ class UniversityUserType(DjangoObjectType):
 
 
 class UniversityUserMutation(graphene.Mutation):
+    """
+    Мутация UniversityUser
+    """
     class Arguments:
         first_name = graphene.String()
         last_name = graphene.String()
@@ -17,15 +23,16 @@ class UniversityUserMutation(graphene.Mutation):
 
     university_user = graphene.Field(UniversityUserType)
 
-    def mutate(self, *args, **kwargs):
-        id = kwargs.pop('id')
-        user = UniversityUser.objects.get(pk=id)
+    # https://www.python.org/dev/peps/pep-0484/#arbitrary-argument-lists-and-default-argument-values
+    def mutate(self, *args: str, **kwargs: int):
+        """
+        Изменение пользователя по id
+        """
+        pk: int = kwargs.pop('id')
+        user: QuerySet = UniversityUser.objects.filter(pk=pk)
+        user.update(**kwargs)
 
-        for attr, value in kwargs.items():
-            setattr(user, attr, value)
-        user.save(update_fields=kwargs.keys())
-
-        return UniversityUserMutation(university_user=user)
+        return UniversityUserMutation(university_user=user.first())
 
 
 class Mutation(graphene.ObjectType):
@@ -33,14 +40,22 @@ class Mutation(graphene.ObjectType):
 
 
 class Query:
-    all_users = graphene.List(UniversityUserType, limit=graphene.Int())
-    user = graphene.Field(UniversityUserType, id=graphene.Int())
+    all_users: graphene.List = graphene.List(UniversityUserType, limit=graphene.Int())
+    user: graphene.Field = graphene.Field(UniversityUserType, id=graphene.Int())
 
-    def resolve_all_users(self, *args, **kwargs):
+    @staticmethod
+    def resolve_all_users(*args: str, **kwargs: int) -> Union[QuerySet, List[UniversityUser]]:
+        """
+        Получение всех пользователей
+        """
         return UniversityUser.objects.all()[:kwargs.get('limit')]
 
-    def resolve_user(self, *args, **kwargs):
-        id = kwargs.get('id')
-        if id is not None:
-            return UniversityUser.objects.get(pk=id)
+    @staticmethod
+    def resolve_user(*args: str, **kwargs: int) -> Optional[UniversityUser]:
+        """
+        Получение одного пользователя по id
+        """
+        pk: int = kwargs.get('id')
+        if pk is not None:
+            return UniversityUser.objects.get(pk=pk)
         return None

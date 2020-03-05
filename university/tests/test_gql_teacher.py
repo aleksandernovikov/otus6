@@ -13,6 +13,9 @@ class TestTeacherGQL(GraphQLTestCase):
         self.teacher = TeacherFactory()
 
     def test_query_all_teachers(self) -> None:
+        """
+        Тест получения всех учителей
+        """
         response = self.query(
             '''
             {

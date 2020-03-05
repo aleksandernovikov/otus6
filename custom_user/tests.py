@@ -12,7 +12,10 @@ class UniversityUserTest(GraphQLTestCase):
     def setUp(self) -> None:
         self.user = UserFactory()
 
-    def test_all_users(self):
+    def test_all_users(self) -> None:
+        """
+        Проверка получения всех пользователей
+        """
         response = self.query(
             '''
             {
@@ -27,7 +30,10 @@ class UniversityUserTest(GraphQLTestCase):
         content = json.loads(response.content)
         self.assertResponseNoErrors(response)
 
-    def test_retrieve_user(self):
+    def test_retrieve_user(self) -> None:
+        """
+        Проверка получения одного пользователя
+        """
         response = self.query(
             '''
             query getUser($id: Int){
@@ -41,8 +47,15 @@ class UniversityUserTest(GraphQLTestCase):
         )
         content = json.loads(response.content)
         self.assertResponseNoErrors(response)
+        user = content.get('data').get('user')
+        self.assertEqual(int(user.get('id')), self.user.id)
+        self.assertEqual(user.get('firstName'), self.user.first_name)
+        self.assertEqual(user.get('lastName'), self.user.last_name)
 
-    def test_user_mutation(self):
+    def test_user_mutation(self) -> None:
+        """
+        Тест мутации пользователя
+        """
         new_first_name, new_last_name = 'Test1', 'TestTest2'
 
         response = self.query(
