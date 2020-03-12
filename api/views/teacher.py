@@ -6,4 +6,4 @@ from university.models import Teacher
 
 class TeacherViewSet(viewsets.ModelViewSet):
     serializer_class = TeacherSerializer
-    queryset = Teacher.objects.all()
+    queryset = Teacher.objects.prefetch_related('courses')
