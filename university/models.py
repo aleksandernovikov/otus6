@@ -2,6 +2,8 @@ import datetime
 
 from django.contrib.auth import get_user_model
 from django.db import models, transaction
+from django.db.models import F
+from django.utils.functional import cached_property
 from django.utils.translation import gettext as _
 
 from university.mixins import UserRepresentationModelMixin
@@ -26,6 +28,15 @@ class Course(models.Model):
     end_date = models.DateField(_('Course end date'), blank=True, null=True)
 
     finished = models.BooleanField(default=False)
+    popularity = models.PositiveIntegerField(_('Popularity'), default=0)
+
+    def increase_popularity(self):
+        self.popularity = F('popularity') + 1
+        self.save()
+
+    @property
+    def all_teachers(self):
+        return self.teachers.all()
 
     class Meta:
         verbose_name = _('Course')

@@ -3,7 +3,10 @@
 
 {% block content %}
     <h1>{% trans 'Title' %}: {{ course.title }}</h1>
-    <h3>{% trans 'Teacher' %}: {{ course.teacher }}</h3>
+    <h3>{% trans 'Teachers' %}: {% for teacher in course.all_teachers %}
+        {{ teacher.fio }}{% if not forloop.last %}, {% endif %}
+    {% endfor %}</h3>
+    <p>{% trans 'Popularity' %}: {{ course.popularity }}</p>
 
     <h4>{% trans 'Students:' %}</h4>
     <ul>

@@ -40,3 +40,10 @@ class CourseDetailView(TitleViewMixin, views.generic.DetailView):
     model = Course
     template_name = 'university/course/course_detail.html'
     page_title = _('Course details')
+
+    def get(self, request, *args, **kwargs):
+        # обновим счетчик популярности курса
+        response = super().get(request, *args, **kwargs)
+        course = self.get_object()
+        course.increase_popularity()
+        return response
