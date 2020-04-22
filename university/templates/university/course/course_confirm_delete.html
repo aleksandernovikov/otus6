@@ -8,6 +8,6 @@
         {% csrf_token %}
         <p>{% trans 'Are you sure you want to delete' %} "{{ course.title }}"?</p>
         <input type="submit" value="{% trans 'Delete' %}">
-        <a href="{% url 'course-list' %}">{% trans 'Cancel' %}</a>
+        <a href="{% url 'courses' %}">{% trans 'Cancel' %}</a>
     </form>
 {% endblock %}

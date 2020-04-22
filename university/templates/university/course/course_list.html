@@ -5,11 +5,11 @@
     <ul>
         {% for course in object_list %}
             <li>
-                <a href="{% url 'course-detail' course.id %}">{{ course.title }}</a>
-                <a href="{% url 'course-update' course.id %}">{% trans 'Edit' %}</a> |
-                <a href="{% url 'course-delete' course.id %}">{% trans 'Delete' %}</a>
+                <a href="{% url 'course-details' course.id %}">{{ course.title }}</a>
+                <a href="{% url 'update-course' course.id %}">{% trans 'Edit' %}</a> |
+                <a href="{% url 'delete-course' course.id %}">{% trans 'Delete' %}</a>
             </li>
         {% endfor %}
     </ul>
-    <a href="{% url 'course-create' %}">{% trans 'Create a new course' %}</a>
+    <a href="{% url 'create-course' %}">{% trans 'Create a new course' %}</a>
 {% endblock %}

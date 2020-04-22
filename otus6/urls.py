@@ -6,7 +6,7 @@ from graphene_django.views import GraphQLView
 from .schema import schema
 
 urlpatterns = [
-    path('', RedirectView.as_view(url=reverse_lazy('course-list')), name='index'),
+    path('', RedirectView.as_view(url=reverse_lazy('courses')), name='index'),
     path('admin/', admin.site.urls),
     path('university/', include('university.urls')),
     path('contacts/', include('contacts.urls')),
